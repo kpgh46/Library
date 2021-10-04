@@ -5,8 +5,10 @@ let libTitle = document.querySelector("#libTitle")
 let libAuthor = document.querySelector("#libAuthor")
 let libPages = document.querySelector("#libPages")
 let libRead = document.querySelector("#libRead")
+let titles = [];
+let errorMessage = document.querySelector("#error");
 
-
+//creates the book
 function Book(title, author, pages, read){
     this.title = title;
     this.author = author;
@@ -14,10 +16,22 @@ function Book(title, author, pages, read){
     this.read = read;
 };
 
+//adds books to library if it is not a duplicate
 function addBookToLibrary(book){
-     myLibrary.push(book);
+
+    if (titles.includes(book.title) === false){
+        myLibrary.push(book);    
+    } else{
+        errorMessage.textContent = "duplicate"
+    };
+    
+
+    titles.push(book.title);
+    
 };
 
+
+//primary function.  Captures form entries and converts to book.
 function submitButton(){
     let title = document.querySelector("#title").value;
     let author = document.querySelector("#author").value;
@@ -31,40 +45,45 @@ function submitButton(){
     addBookToLibrary(newBook);  
 
     toPage(myLibrary);
-  
+    
+    clear();
+
+    newFunction;
+    
 };
 
 
 function toPage(arr){
-    for (let title in myLibrary){
-        let newTitle = document.createElement('DIV');
-        newTitle.textContent = (`${myLibrary[title].title}`);
-        libTitle.appendChild(newTitle);
-    }
+    let newEntry = myLibrary.pop();
     
-    for (let author in myLibrary){
-        let newAuthor = document.createElement('DIV');
-        newAuthor.textContent = (`${myLibrary[author].author}`);
-        libAuthor.appendChild(newAuthor);
-    }
+    let newTitle = document.createElement('DIV');
+    newTitle.textContent = (`${newEntry.title}`);
+    libTitle.appendChild(newTitle);
     
-    for (let pages in myLibrary){
-        let newPages = document.createElement('DIV');
-        newPages.textContent = (`${myLibrary[pages].pages}`);
-        libPages.appendChild(newPages);
-    }
-    for (let read in myLibrary){
-        let newRead = document.createElement('DIV');
-        newRead.textContent = (`${myLibrary[read].read}`);
-        libRead.appendChild(newRead);
-    }
+    let newAuthor = document.createElement('DIV');
+    newAuthor.textContent = (`${newEntry.author}`);
+    libAuthor.appendChild(newAuthor);
+
+    let newPages = document.createElement('DIV');
+    newPages.textContent = (`${newEntry.pages}`);
+    libPages.appendChild(newPages);
+   
+    let newRead = document.createElement('DIV');
+    newRead.textContent = (`${newEntry.read}`);
+    libRead.appendChild(newRead);
+    
 }
+
+function clear(){
+    document.querySelector("#title").value='';
+    document.querySelector("#author").value='';
+    document.querySelector("#pages").value='';
+    document.querySelector("#read").value='';
+}
+
 
 button.addEventListener("click", submitButton);
 
-
-
-
-
-
-
+let newFunction = setTimeout(() => {
+    document.querySelector("#error").value = '';
+}, 2000);
