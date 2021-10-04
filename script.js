@@ -7,6 +7,7 @@ let libPages = document.querySelector("#libPages")
 let libRead = document.querySelector("#libRead")
 let titles = [];
 let errorMessage = document.querySelector("#error");
+let newDelete = document.querySelector("#deleteButton");
 
 //creates the book
 function Book(title, author, pages, read){
@@ -71,6 +72,11 @@ function toPage(arr){
     let newRead = document.createElement('DIV');
     newRead.textContent = (`${newEntry.read}`);
     libRead.appendChild(newRead);
+
+    let deleteButton = document.createElement("BUTTON");
+    deleteButton.textContent = "Delete"
+    newDelete.appendChild(deleteButton);
+
     
 }
 
@@ -84,6 +90,4 @@ function clear(){
 
 button.addEventListener("click", submitButton);
 
-let newFunction = setTimeout(() => {
-    document.querySelector("#error").value = '';
-}, 2000);
+

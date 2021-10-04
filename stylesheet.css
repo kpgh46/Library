@@ -19,6 +19,11 @@ header{
     display: grid;
     grid-column-start:2;
     border: solid blue 1px;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   }
 
+button{
+    height: 20px;
+    width: 80px;
+   
+}
