@@ -11,6 +11,7 @@ let tableData = document.querySelector("#tableData");
 
 
 
+
 //creates the book
 function Book(title, author, pages, read){
     this.title = title;
@@ -50,21 +51,20 @@ function submitButton(){
     toPage(myLibrary);
     
     clear();
-
-    
 };
 
 
 function toPage(arr){
     let bookText = '';
+    let dButton = "<button class='deleteButton'>Delete</button>"
+    dButton.textContent = "Delete";
 
     for (let items of arr){
-        bookText += `<tr><td>${items.title}</td><td> ${items.author}</td><td>${items.pages}</td><td>${items.read}</td></tr>`
+        bookText += `<tr><td>${items.title}</td><td> ${items.author}</td><td>${items.pages}</td><td>${items.read}</td><td>${dButton}</td></tr>`
+        
     }
 
     tableData.innerHTML = bookText;
-    
-  
 }
 
 function clear(){
