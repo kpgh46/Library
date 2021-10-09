@@ -14,27 +14,37 @@
 <main id = "container">
     <form id = "form">
         <p>Please enter book information:</p>
-            <label>Title: </label><input type = "text" id = 'title'></label>
             <br>
-            <label>Author: </label><input type = "text" id = 'author'></label>
+            <label>Title: </label><br><input type = "text" id = 'title'></label>
             <br>
-            <label>Pages: </label><input type = "text" id = 'pages'></label>
+            <label>Author: </label><br><input type = "text" id = 'author'></label>
             <br>
-            <label>Read: </label><input type = "text" id = 'read'></label>
+            <label>Pages: </label><br><input type = "text" id = 'pages'></label>
+            <br>
+            <label>Read: </label><br><input type = "text" id = 'read'></label>
             <br>
             <button type = 'button' id = 'button'>Submit</button>
             <br>
             <div id = "error"></div>
     </form>
 
-        <section id = "books">
-            <div id = 'libTitle'>Title</div>
-            <div id = 'libAuthor'>Author</div>
-            <div id = 'libPages'>Pages</div>
-            <div id = 'libRead'>Read</div>
-            <div id = 'deleteButton'>Delete</div>
-        </section>
+    <body>
+        <table id = "table">
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Pages</th>
+                <th>Read</th>
+            </tr>
+            </thead>
+            <tbody id = "tableData"></tbody>
 
+        </table>
+
+
+
+    </body>
 
 
 </main>

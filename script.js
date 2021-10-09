@@ -7,7 +7,9 @@ let libPages = document.querySelector("#libPages")
 let libRead = document.querySelector("#libRead")
 let titles = [];
 let errorMessage = document.querySelector("#error");
-let newDelete = document.querySelector("#deleteButton");
+let tableData = document.querySelector("#tableData");
+
+
 
 //creates the book
 function Book(title, author, pages, read){
@@ -49,35 +51,20 @@ function submitButton(){
     
     clear();
 
-    newFunction;
     
 };
 
 
 function toPage(arr){
-    let newEntry = myLibrary.pop();
-    
-    let newTitle = document.createElement('DIV');
-    newTitle.textContent = (`${newEntry.title}`);
-    libTitle.appendChild(newTitle);
-    
-    let newAuthor = document.createElement('DIV');
-    newAuthor.textContent = (`${newEntry.author}`);
-    libAuthor.appendChild(newAuthor);
+    let bookText = '';
 
-    let newPages = document.createElement('DIV');
-    newPages.textContent = (`${newEntry.pages}`);
-    libPages.appendChild(newPages);
-   
-    let newRead = document.createElement('DIV');
-    newRead.textContent = (`${newEntry.read}`);
-    libRead.appendChild(newRead);
+    for (let items of arr){
+        bookText += `<tr><td>${items.title}</td><td> ${items.author}</td><td>${items.pages}</td><td>${items.read}</td></tr>`
+    }
 
-    let deleteButton = document.createElement("BUTTON");
-    deleteButton.textContent = "Delete"
-    newDelete.appendChild(deleteButton);
-
+    tableData.innerHTML = bookText;
     
+  
 }
 
 function clear(){

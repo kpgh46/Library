@@ -6,8 +6,9 @@ header{
     display:grid;
     border:solid black;
     grid-template-columns: 1.5fr 3fr;
-    height:400px;
+    height:auto;
     column-gap:10px;
+    width: auto;
   }
   
   #form{
@@ -15,15 +16,26 @@ header{
     border: solid red 1px;
   }
   
-  #books{
-    display: grid;
-    grid-column-start:2;
-    border: solid blue 1px;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  }
 
 button{
     height: 20px;
     width: 80px;
    
 }
+
+#table{
+    display: grid;
+    grid-column-start: 2;
+    width: 100%;
+    border: 1px black;
+
+}
+
+td,th{
+    border: 1px black;
+    padding-right: 200px;
+    width:auto;
+}
+
+
+
