@@ -4,28 +4,12 @@ let Book = (title,author,isbn) => {
     return {title, author, isbn}
 }
 
+
+
 //UI Factory: Handles UI Tasks
 
 let UI = (() => {
 
-    let displayBooks = () => {
-        let storedBooks = [
-            {
-            title: "Book One",
-            author: "John Doe",
-            isbn: 234234
-            },
-            {
-            title: "Book Two",
-            author: "Jane Doe",
-            isbn: 234566
-            }
-        ];
-
-        let books = storedBooks;
-
-       books.forEach((book) => addBookToList(book)) 
-    }
 
     let addBookToList = (book) => { 
         let list = document.querySelector("#book-list");
@@ -42,21 +26,37 @@ let UI = (() => {
         list.appendChild(row)
     };
 
+    let deleteBook = (el) => {
+        if (el.classList.contains("delete")){
+            el.parentElement.parentElement.remove();
+        }
+        
+    }
+
+    let showAlert = (message, className) => {
+        let div = document.createElement('div');
+        div.className = `alert alert-${className}`;
+        div.appendChild(document.createTextNode(message));
+        let container = document.querySelector(".container");
+        let form = document.querySelector("#book-form");
+        container.insertBefore(div,form);
+
+        setTimeout(() => document.querySelector('.alert').remove(), 3000)
+
+
+
+    }
+
     let clearFields = () => {
         document.querySelector("#title").value = ''
         document.querySelector("#author").value = ''
         document.querySelector("#isbn").value = ''
     }
 
-    return{ displayBooks, addBookToList, clearFields}
+    return{ addBookToList, clearFields, deleteBook, showAlert}
 })();
 
 
-
-//Store Factory: Handles local Storage
-
-//Event: Display Books
-document.addEventListener('DOMContentLoaded', UI.displayBooks)
 
 //Event: Add a Book
 document.querySelector("#book-form").addEventListener('submit', (e) => {
@@ -65,15 +65,27 @@ document.querySelector("#book-form").addEventListener('submit', (e) => {
     let title = document.querySelector("#title").value;
     let author = document.querySelector("#author").value;
     let isbn = document.querySelector("#isbn").value;
+
+    if(title === ''|| author === ''||isbn === ''){
+        UI.showAlert("please fill in all fields", "danger")
+    }else{
+
+        let book = Book(title, author, isbn);
+
+        UI.addBookToList(book);
+
+        UI.showAlert("Book Added", "success")
     
-    let book = Book(title, author, isbn);
+        UI.clearFields();
 
-    UI.addBookToList(book);
-
-    UI.clearFields();
-
+    }
 })
 
 //Event: Remove a Book
 
+document.querySelector("#book-list").addEventListener("click", (e) => {
+    UI.deleteBook(e.target);
+})
+
+UI.showAlert("Book removed", "success")
 
